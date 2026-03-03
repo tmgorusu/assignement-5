@@ -29,4 +29,52 @@ public class UnsortedSet<E> extends AbstractSet<E> {
 
     private ArrayList<E> myCon;
 
+    public UnsortedSet() {
+        myCon = new ArrayList<>();
+    }
+
+    public boolean add(E item){
+        //i think its true or false depending on if it changes
+        // so false if alr present
+        return false;
+    }
+
+    public boolean addAll(ISet<E> otherSet){
+        //true if one thing got added (?)
+        return false;
+    }
+
+    public void clear(){
+        //size() == 0
+    }
+
+    public Iterator<E> iterator(){
+        // return [idk what to put here].iterator();
+        return null;
+    }
+
+    public boolean remove(E item){
+        //same logic as add
+        return false;
+    }
+
+    public int size(){
+        return 0;
+    }
+
+    @Override
+    public ISet<E> union(ISet<E> otherSet){
+        return null;
+    }
+
+    @Override
+    public ISet<E> intersection(ISet<E> otherSet){
+        return null;
+    }
+
+    @Override
+    public ISet<E> diference(ISet<E> otherSet){
+        return null;
+    }
+
 }

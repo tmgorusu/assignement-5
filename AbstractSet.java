@@ -38,6 +38,22 @@ public abstract class AbstractSet<E> implements ISet<E> {
      * NO METHODS ADDED other than those in ISet and Object.
      */
 
+    public boolean contains(E item){
+        return false;
+    }
+
+    public boolean containsAll(ISet<E> otherSet){
+        return false;
+    }
+
+    public boolean equals(Object other){
+        return false;
+    }
+
+    public ISet<E> difference(ISet<E> otherSet){
+        return null;
+    }
+
 
     /**
      * Return a String version of this set. 
