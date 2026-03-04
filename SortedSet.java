@@ -33,6 +33,8 @@ public class SortedSet<E extends Comparable<? super E>> extends AbstractSet<E> {
 
     private ArrayList<E> myCon;
 
+    //USE MERGE SORT TY!
+
     /**
      * create an empty SortedSet
      */
@@ -110,7 +112,7 @@ public class SortedSet<E extends Comparable<? super E>> extends AbstractSet<E> {
     public ISet<E> diference(ISet<E> otherSet){
         return null;
     }
-    
+
     @Override
     public boolean equals(Object other){
         return false;
