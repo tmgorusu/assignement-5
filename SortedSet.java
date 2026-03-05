@@ -115,17 +115,6 @@ public class SortedSet<E extends Comparable<? super E>> extends AbstractSet<E> {
     }
 
     @Override
-    public boolean addAll(ISet<E> otherSet){
-        boolean isSetDiff = false;
-        for (E val : otherSet) {
-            if (add(val)) {
-                isSetDiff = true;
-            }
-        }
-        return isSetDiff;
-    }
-
-    @Override
     public void clear(){
         myCon.clear();
     }
@@ -177,21 +166,5 @@ public class SortedSet<E extends Comparable<? super E>> extends AbstractSet<E> {
         return diff;
     }
 
-    @Override
-    public boolean equals(Object other){
-        SortedSet<?> setOther = (SortedSet<E>) other;
-        if (setOther.size() != this.size()){
-            return false;
-        }
-        int i = 0;
-        while (i < this.size()){
-            if (!myCon.get(i).equals(setOther.myCon.get(i))) {
-                return false;
-            }
-            i++;
-        }
-        return true;
-        //implemented in O(N) when other is SortedSet
-    }
 
 }

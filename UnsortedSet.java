@@ -33,6 +33,7 @@ public class UnsortedSet<E> extends AbstractSet<E> {
         myCon = new ArrayList<>();
     }
 
+    @Override
     public boolean add(E item) {
         // i think its true or false depending on if it changes
         // so false if alr present
@@ -41,17 +42,6 @@ public class UnsortedSet<E> extends AbstractSet<E> {
             return true;
         }
         return false;
-    }
-
-    public boolean addAll(ISet<E> otherSet) {
-        // true if one thing got added (?)
-        boolean isSetDiff = false;
-        for (E val : otherSet) {
-            if (add(val)) {
-                isSetDiff = true;
-            }
-        }
-        return isSetDiff;
     }
 
     @Override

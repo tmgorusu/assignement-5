@@ -23,6 +23,7 @@ import java.util.Iterator;
  */
 public abstract class AbstractSet<E> implements ISet<E> {
 
+    @Override
     public boolean contains(E item){
         for (E otherItem : this) {
             if (otherItem.equals(item)) {
@@ -32,6 +33,7 @@ public abstract class AbstractSet<E> implements ISet<E> {
         return false;
     }
 
+    @Override
     public boolean containsAll(ISet<E> otherSet){
         for (E otherItem : otherSet) {
             if (!(this.contains(otherItem))) {
@@ -41,6 +43,31 @@ public abstract class AbstractSet<E> implements ISet<E> {
         return true;
     }
 
+    @Override
+    public boolean addAll(ISet<E> otherSet){
+        boolean isSetDiff = false;
+        for (E val : otherSet) {
+            if (add(val)) {
+                isSetDiff = true;
+            }
+        }
+        return isSetDiff;
+    }
+
+    @Override
+    public ISet<E> difference(ISet<E> otherSet){
+        ISet<E> result = new UnsortedSet<>();
+
+        for (E itemE : this) {
+            if (!otherSet.contains(itemE)) {
+                result.add(itemE);
+            }
+        }
+
+        return result;
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other instanceof ISet<?>) {
             ISet<?> otherSet = (ISet<?>) other;
@@ -56,20 +83,6 @@ public abstract class AbstractSet<E> implements ISet<E> {
         }
         return false;
     }
-
-    // Finish this
-    public ISet<E> difference(ISet<E> otherSet){
-        ISet<E> result = new UnsortedSet<>();
-
-        for (E itemE : this) {
-            if (!otherSet.contains(itemE)) {
-                result.add(itemE);
-            }
-        }
-
-        return result;
-    }
-
 
     /**
      * Return a String version of this set. 
