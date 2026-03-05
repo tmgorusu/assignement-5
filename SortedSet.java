@@ -65,7 +65,7 @@ public class SortedSet<E extends Comparable<? super E>> extends AbstractSet<E> {
 
     private ArrayList<E> merge(ArrayList<E> listL, ArrayList<E> listR){
         ArrayList<E> result = new ArrayList<>();
-        
+
         int rightCounter = 0;
         int leftCounter = 0;
 
@@ -125,11 +125,6 @@ public class SortedSet<E extends Comparable<? super E>> extends AbstractSet<E> {
     }
 
     @Override
-    public void clear(){
-        myCon.clear();
-    }
-
-    @Override
     public Iterator<E> iterator(){
         // return [idk what to put here].iterator();
         return myCon.iterator();
@@ -164,17 +159,5 @@ public class SortedSet<E extends Comparable<? super E>> extends AbstractSet<E> {
         }
         return intersection;
     }
-
-    @Override
-    public ISet<E> difference(ISet<E> otherSet){
-        SortedSet<E> diff = new SortedSet<>();
-        for (E item : this) {
-            if (!(otherSet.contains(item))) {
-                diff.myCon.add(item);
-            }
-        }
-        return diff;
-    }
-
 
 }

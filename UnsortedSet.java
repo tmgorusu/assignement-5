@@ -45,14 +45,7 @@ public class UnsortedSet<E> extends AbstractSet<E> {
     }
 
     @Override
-    public void clear() {
-        // size() == 0
-        myCon.clear();
-    }
-
-    @Override
     public Iterator<E> iterator() {
-        // return [idk what to put here].iterator();
         return myCon.iterator();
     }
 
@@ -84,17 +77,6 @@ public class UnsortedSet<E> extends AbstractSet<E> {
             }
         }
         return intersection;
-    }
-
-    @Override
-    public ISet<E> difference(ISet<E> otherSet) {
-        UnsortedSet<E> diff = new UnsortedSet<>();
-        for (E item : this) {
-            if (!(otherSet.contains(item))) {
-                diff.myCon.add(item);
-            }
-        }
-        return diff;
     }
 
 }

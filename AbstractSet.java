@@ -97,6 +97,30 @@ public abstract class AbstractSet<E> implements ISet<E> {
     }
 
     /**
+     * removes all of the values in an set
+     */
+    @Override
+    public void clear() {
+        Iterator<E> increment = this.iterator();
+        while(increment.hasNext()){
+            remove(increment.next());
+        }
+    }
+
+    /**
+     * calculates the size of a set
+     */
+    @Override
+    public int size() {
+        Iterator<E> increment = this.iterator();
+        int counter = 0;
+        while(increment.hasNext()){
+            counter++;
+        }
+        return counter;
+    }
+
+    /**
      * checks if two objects have the same values at
      * certain locations
      * 
