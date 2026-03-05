@@ -37,7 +37,8 @@ public class SetTester {
 
     public static void main(String[] args) {
 
-        /* 
+        
+
         ISet<String> s1 = new UnsortedSet<>();
         s1.add("A");
         s1.add("C");
@@ -237,9 +238,27 @@ public class SetTester {
         // test 24
         actual = s1.equals(null);
         showTestResults(actual, false, 24, s1, null, "equals methods SortedSet - other Object is null");
-        */
 
-        //CS314 Students. Uncomment this section when ready to
+        // CS314 Students. Uncomment this section when ready to
+        // run your experiments
+        // try {
+        // UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        // }
+        // catch(Exception e) {
+        // System.out.println("Unable to change look and feel");
+        // }
+        // Scanner sc = new Scanner(System.in);
+        // String response = "";
+        // do {
+        // largeTest();
+        // System.out.print("Another file? Enter y to do another file: ");
+        // response = sc.next();
+        // } while( response != null && response.length() > 0
+        // && response.substring(0,1).equalsIgnoreCase("y") );
+
+    }
+
+        /*//CS314 Students. Uncomment this section when ready to
         // run your experiments
         try {
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -255,8 +274,8 @@ public class SetTester {
          response = sc.next();
         } while( response != null && response.length() > 0
          && response.substring(0,1).equalsIgnoreCase("y") );
-
-    }
+         */
+    
 
     // print out results of test
     private static <E> void showTestResults(boolean actualResult, boolean expectedResult,

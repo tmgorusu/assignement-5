@@ -23,6 +23,13 @@ import java.util.Iterator;
  */
 public abstract class AbstractSet<E> implements ISet<E> {
 
+    /**
+     * checks if a certain set has a specific
+     * item <E>
+     * 
+     * @return true/false depending on if a specific
+     * item is present
+     */
     @Override
     public boolean contains(E item){
         for (E otherItem : this) {
@@ -33,6 +40,13 @@ public abstract class AbstractSet<E> implements ISet<E> {
         return false;
     }
 
+    /**
+     * checks if a certain set has a specific
+     * item <E>
+     * 
+     * @return true/false depending on if all
+     * items are present
+     */
     @Override
     public boolean containsAll(ISet<E> otherSet){
         for (E otherItem : otherSet) {
@@ -57,13 +71,11 @@ public abstract class AbstractSet<E> implements ISet<E> {
     @Override
     public ISet<E> difference(ISet<E> otherSet){
         ISet<E> result = new UnsortedSet<>();
-
         for (E itemE : this) {
             if (!otherSet.contains(itemE)) {
                 result.add(itemE);
             }
         }
-
         return result;
     }
 

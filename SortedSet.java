@@ -54,7 +54,7 @@ public class SortedSet<E extends Comparable<? super E>> extends AbstractSet<E> {
 
     private ArrayList<E> mergeSort(ArrayList<E> list){
         int size = list.size();
-        if (size == 1 ) {
+        if (size <= 1 ) {
             return list;
         }
         int newSize = size / 2;
@@ -64,22 +64,32 @@ public class SortedSet<E extends Comparable<? super E>> extends AbstractSet<E> {
     }
 
     private ArrayList<E> merge(ArrayList<E> listL, ArrayList<E> listR){
-        for (E item : listL) {
-            sort(listR, item);
-        }
-        return listR;
-    }
+        ArrayList<E> result = new ArrayList<>();
+        
+        int rightCounter = 0;
+        int leftCounter = 0;
 
-    private void sort(ArrayList<E> list, E item){
-        int i= 0;
-        if (i < list.size()) {
-            if (!(list.get(i).compareTo(item) < 0)) {
-                list.add(i, item);
+        while (rightCounter < listR.size() && leftCounter < listL.size()){
+            if (listL.get(leftCounter).compareTo(listR.get(rightCounter)) < 0){
+                result.add(listL.get(leftCounter));
+                leftCounter++;
+            } else {
+                result.add(listR.get(rightCounter));
+                rightCounter++;
             }
-            i++;
-        } else if ( i == list.size()){
-            list.add(i, item);
         }
+
+        while (rightCounter != listR.size()) {
+            result.add(listR.get(rightCounter));
+            rightCounter++;
+        }
+
+        while (leftCounter != listL.size()) {
+            result.add(listL.get(leftCounter));
+            leftCounter++;
+        }
+
+        return result;
     }
 
     /**
