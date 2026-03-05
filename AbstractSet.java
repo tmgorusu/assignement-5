@@ -23,33 +23,41 @@ import java.util.Iterator;
  */
 public abstract class AbstractSet<E> implements ISet<E> {
 
-    /* DELETE THIS COMMENT FROM YOUR SUBMISSION.
-     *
-     * RECALL:
-     *
-     * NO INSTANCE VARIABLES ALLOWED.
-     *
-     * NO DIRECT REFERENCE TO UnsortedSet OR SortedSet ALLOWED.
-     * (In other words the data types UnsortedSet and SortedSet
-     * will not appear anywhere in this class.)
-     *
-     * NO DIRECT REFERENCES to ArrayList or other Java Collections.
-     *
-     * NO METHODS ADDED other than those in ISet and Object.
-     */
-
     public boolean contains(E item){
+        for (E otherItem : this) {
+            if (otherItem.equals(item)) {
+                return true;
+            }
+        }
         return false;
     }
 
     public boolean containsAll(ISet<E> otherSet){
+        for (E otherItem : otherSet) {
+            if (!(this.equals(otherItem))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean equals(Object other) {
+        if (other instanceof ISet<?>) {
+            ISet<?> otherSet = (ISet<?>) other;
+            if (this.size() != otherSet.size()) {
+                return false;
+            }
+            for (Object item : otherSet) {
+                if (!(this.contains((E) item))) {
+                    return false;
+                }
+            }
+            return true;
+        }
         return false;
     }
 
-    public boolean equals(Object other){
-        return false;
-    }
-
+    // Finish this
     public ISet<E> difference(ISet<E> otherSet){
         return null;
     }
