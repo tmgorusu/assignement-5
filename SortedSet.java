@@ -14,8 +14,8 @@
  * UTEID 2:
  */
 
-import java.util.Iterator;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * In this implementation of the ISet interface the elements in the Set are
@@ -33,8 +33,6 @@ public class SortedSet<E extends Comparable<? super E>> extends AbstractSet<E> {
 
     private ArrayList<E> myCon;
 
-    //USE MERGE SORT TY!
-
     /**
      * create an empty SortedSet
      */
@@ -50,6 +48,37 @@ public class SortedSet<E extends Comparable<? super E>> extends AbstractSet<E> {
         myCon = new ArrayList<>();
         for (E item : other) {
             myCon.add(item);
+        }
+        myCon = mergeSort(myCon);
+    }
+
+    private ArrayList<E> mergeSort(ArrayList<E> list){
+        int size = list.size();
+        if (size == 1 ) {
+            return list;
+        }
+        int newSize = size / 2;
+        ArrayList<E> left = mergeSort(new ArrayList<>(list.subList(0, newSize)));
+        ArrayList<E> right = mergeSort(new ArrayList<>(list.subList(newSize, size)));
+        return merge(left, right);
+    }
+
+    private ArrayList<E> merge(ArrayList<E> listL, ArrayList<E> listR){
+        for (E item : listL) {
+            sort(listR, item);
+        }
+        return listR;
+    }
+
+    private void sort(ArrayList<E> list, E item){
+        int i= 0;
+        if (i < list.size()) {
+            if (!(list.get(i).compareTo(item) < 0)) {
+                list.add(i, item);
+            }
+            i++;
+        } else if ( i == list.size()){
+            list.add(i, item);
         }
     }
 
@@ -71,55 +100,97 @@ public class SortedSet<E extends Comparable<? super E>> extends AbstractSet<E> {
         int maxIndex = myCon.size() - 1;
         return myCon.get(maxIndex);
     }
-
-    
+ 
+    @Override
     public boolean add(E item){
-        //i think its true or false depending on if it changes
-        // so false if alr present
+        if (!(contains(item))) {
+            int i = 0;
+            while (i < myCon.size() && myCon.get(i).compareTo(item)< 0){
+                i++;
+            }
+            myCon.add(i, item);
+            return true;
+        }
         return false;
     }
 
+    @Override
     public boolean addAll(ISet<E> otherSet){
-        //true if one thing got added (?)
-        return false;
+        boolean isSetDiff = false;
+        for (E val : otherSet) {
+            if (add(val)) {
+                isSetDiff = true;
+            }
+        }
+        return isSetDiff;
     }
 
+    @Override
     public void clear(){
-        //size() == 0
+        myCon.clear();
     }
 
+    @Override
     public Iterator<E> iterator(){
         // return [idk what to put here].iterator();
-        return null;
+        return myCon.iterator();
     }
 
+    @Override
     public boolean remove(E item){
         //same logic as add
-        return false;
+        return myCon.remove(item);
     }
 
+    @Override
     public int size(){
-        return 0;
+        return myCon.size();
     }
 
     @Override
     public ISet<E> union(ISet<E> otherSet){
-        return null;
+        SortedSet<E> union = new SortedSet<>();
+        union.addAll(this);
+        union.addAll(otherSet);
+        return union;
     }
 
     @Override
     public ISet<E> intersection(ISet<E> otherSet){
-        return null;
+        SortedSet<E> intersection = new SortedSet<>();
+        for (E item : this) {
+            if (otherSet.contains(item)) {
+                intersection.myCon.add(item);
+            }
+        }
+        return intersection;
     }
 
     @Override
     public ISet<E> difference(ISet<E> otherSet){
-        return null;
+        SortedSet<E> diff = new SortedSet<>();
+        for (E item : this) {
+            if (!(otherSet.contains(item))) {
+                diff.myCon.add(item);
+            }
+        }
+        return diff;
     }
 
     @Override
     public boolean equals(Object other){
-        return false;
+        SortedSet<?> setOther = (SortedSet<E>) other;
+        if (setOther.size() != this.size()){
+            return false;
+        }
+        int i = 0;
+        while (i < this.size()){
+            if (!myCon.get(i).equals(setOther.myCon.get(i))) {
+                return false;
+            }
+            i++;
+        }
+        return true;
         //implemented in O(N) when other is SortedSet
     }
 

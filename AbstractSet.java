@@ -34,7 +34,7 @@ public abstract class AbstractSet<E> implements ISet<E> {
 
     public boolean containsAll(ISet<E> otherSet){
         for (E otherItem : otherSet) {
-            if (!(this.equals(otherItem))) {
+            if (!(this.contains(otherItem))) {
                 return false;
             }
         }
@@ -59,7 +59,15 @@ public abstract class AbstractSet<E> implements ISet<E> {
 
     // Finish this
     public ISet<E> difference(ISet<E> otherSet){
-        return null;
+        ISet<E> result = new UnsortedSet<>();
+
+        for (E itemE : this) {
+            if (!otherSet.contains(itemE)) {
+                result.add(itemE);
+            }
+        }
+
+        return result;
     }
 
 
