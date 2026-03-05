@@ -33,48 +33,74 @@ public class UnsortedSet<E> extends AbstractSet<E> {
         myCon = new ArrayList<>();
     }
 
-    public boolean add(E item){
-        //i think its true or false depending on if it changes
+    public boolean add(E item) {
+        // i think its true or false depending on if it changes
         // so false if alr present
+        if (!(contains(item))) {
+            myCon.add(item);
+            return true;
+        }
         return false;
     }
 
-    public boolean addAll(ISet<E> otherSet){
-        //true if one thing got added (?)
-        return false;
+    public boolean addAll(ISet<E> otherSet) {
+        // true if one thing got added (?)
+        boolean isSetDiff = false;
+        for (E val : otherSet) {
+            if (add(val)) {
+                isSetDiff = true;
+            }
+        }
+        return isSetDiff;
     }
 
-    public void clear(){
-        //size() == 0
+    public void clear() {
+        // size() == 0
+        myCon.clear();
     }
 
-    public Iterator<E> iterator(){
+    public Iterator<E> iterator() {
         // return [idk what to put here].iterator();
-        return null;
+        return myCon.iterator();
     }
 
-    public boolean remove(E item){
-        //same logic as add
-        return false;
+    public boolean remove(E item) {
+        // same logic as add
+        return myCon.remove(item);
     }
 
-    public int size(){
-        return 0;
-    }
-
-    @Override
-    public ISet<E> union(ISet<E> otherSet){
-        return null;
+    public int size() {
+        return myCon.size();
     }
 
     @Override
-    public ISet<E> intersection(ISet<E> otherSet){
-        return null;
+    public ISet<E> union(ISet<E> otherSet) {
+        UnsortedSet<E> union = new UnsortedSet<>();
+        union.addAll(this);
+        union.addAll(otherSet);
+        return union;
     }
 
     @Override
-    public ISet<E> diference(ISet<E> otherSet){
-        return null;
+    public ISet<E> intersection(ISet<E> otherSet) {
+        UnsortedSet<E> intersection = new UnsortedSet<>();
+        for (E item : this) {
+            if (otherSet.contains(item)) {
+                intersection.myCon.add(item);
+            }
+        }
+        return intersection;
+    }
+
+    @Override
+    public ISet<E> difference(ISet<E> otherSet) {
+        UnsortedSet<E> diff = new UnsortedSet<>();
+        for (E item : this) {
+            if (!(otherSet.contains(item))) {
+                diff.myCon.add(item);
+            }
+        }
+        return diff;
     }
 
 }

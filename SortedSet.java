@@ -39,7 +39,7 @@ public class SortedSet<E extends Comparable<? super E>> extends AbstractSet<E> {
      * create an empty SortedSet
      */
     public SortedSet() {
-
+        myCon = new ArrayList<>();
     }
 
     /**
@@ -47,7 +47,10 @@ public class SortedSet<E extends Comparable<? super E>> extends AbstractSet<E> {
      * @param other != null
      */
     public SortedSet(ISet<E> other) {
-
+        myCon = new ArrayList<>();
+        for (E item : other) {
+            myCon.add(item);
+        }
     }
 
     /**
@@ -56,7 +59,7 @@ public class SortedSet<E extends Comparable<? super E>> extends AbstractSet<E> {
      * @return the smallest element in this SortedSet.
      */
     public E min() {
-
+        return myCon.get(0);
     }
 
     /**
@@ -65,7 +68,8 @@ public class SortedSet<E extends Comparable<? super E>> extends AbstractSet<E> {
      * @return the largest element in this SortedSet.
      */
     public E max() {
-
+        int maxIndex = myCon.size() - 1;
+        return myCon.get(maxIndex);
     }
 
     
@@ -109,7 +113,7 @@ public class SortedSet<E extends Comparable<? super E>> extends AbstractSet<E> {
     }
 
     @Override
-    public ISet<E> diference(ISet<E> otherSet){
+    public ISet<E> difference(ISet<E> otherSet){
         return null;
     }
 
