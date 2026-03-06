@@ -5,13 +5,13 @@
  * own work. I/we have neither given nor received unauthorized assistance on
  * this assignment.
  *
- * Name 1:
- * Email address 1:
- * UTEID 1:
+ * Name 1: Trisha Gorusu
+ * Email address 1: gorusu.trisha@gmail.com
+ * UTEID 1: tmg2936
  *
- * Name 2:
- * Email address 2:
- * UTEID 2:
+ * Name 2: Krish Vijayvergia
+ * Email address 2: kv9375@my.utexas.edu
+ * UTEID 2: kv9375
  */
 
 import java.util.ArrayList;
@@ -33,33 +33,53 @@ public class UnsortedSet<E> extends AbstractSet<E> {
         myCon = new ArrayList<>();
     }
 
+    /**
+     * adds a value to the end of a set
+     */
+    // O(n)
     @Override
     public boolean add(E item) {
-        // i think its true or false depending on if it changes
-        // so false if alr present
         if (!(contains(item))) {
-            myCon.add(item);
+            myCon.add(item); //array list add
             return true;
         }
         return false;
     }
 
+    /**
+     * goes thru the values in con
+     */
+    // O(1)
     @Override
     public Iterator<E> iterator() {
         return myCon.iterator();
     }
 
+    /**
+     * removes a specfic value from the set
+     */
+    // O(n)
     @Override
     public boolean remove(E item) {
-        // same logic as add
         return myCon.remove(item);
     }
 
+    /**
+     * calculates the size of a set
+     */
+    // O(1)
     @Override
     public int size() {
         return myCon.size();
     }
 
+    /**
+     * finds the values that r in either set
+     * 
+     * @param otherSet checks if this set has the corresponding value
+     * @return true/false depending on if a change was able to be made
+     */
+    // O(n^2)
     @Override
     public ISet<E> union(ISet<E> otherSet) {
         UnsortedSet<E> union = new UnsortedSet<>();
@@ -68,6 +88,13 @@ public class UnsortedSet<E> extends AbstractSet<E> {
         return union;
     }
 
+    /**
+     * finds the values that r in both sets
+     * 
+     * @param otherSet checks if this set has the corresponding value
+     * @return true/false depending on if a change was able to be made
+     */
+    // O(n^2)
     @Override
     public ISet<E> intersection(ISet<E> otherSet) {
         UnsortedSet<E> intersection = new UnsortedSet<>();

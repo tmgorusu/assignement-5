@@ -37,8 +37,6 @@ public class SetTester {
 
     public static void main(String[] args) {
 
-        
-
         ISet<String> s1 = new UnsortedSet<>();
         s1.add("A");
         s1.add("C");
