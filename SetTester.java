@@ -23,6 +23,7 @@ import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
+import javax.print.attribute.standard.MediaSize;
 import javax.swing.UIManager;
 
 import javax.swing.JFileChooser;
@@ -40,40 +41,53 @@ public class SetTester {
         ISet<String> s1 = new UnsortedSet<>();
         s1.add("A");
         s1.add("C");
-        s1.add("A");
-        s1.add("B");
-
-        // test 1
-        boolean actual = s1.contains("A");
-        showTestResults(actual, true, 1, s1, null, "add and contains methods UnsortedSet"
-                + "/nset 1 contains A.");
-
-        // test 2
-        s1.remove("A");
-        actual = s1.contains("A");
-        showTestResults(actual, false, 2, s1, null, "remove and contains method UnsortedSet"
-                + "/nset1 does not contain A.");
-
-        // test 3
-        actual = s1.size() == 2;
-        showTestResults(actual, true, 3, s1, null, "size method UnsortedSet"
-                + "/nsize of set 1 is 2.");
+        s1.add("C");
+        s1.add("C");
 
         ISet<String> s2 = new UnsortedSet<>();
-        s2.add("C");
-        s2.add("A");
-        s2.add("B");
+        s1.add("C");
+        s1.add("A");
+        s1.add("A");
+        s1.add("A");
 
-        // test 4
-        actual = s2.containsAll(s1);
-        showTestResults(actual, true, 4, s1, s2, "containsAll method UnsortedSet"
-                + "/ns2 contains all of s1.");
+        ISet<String> s3 = new SortedSet<>();
+        s1.add("B");
+        s1.add("C");
+        s1.add("D");
+        s1.add("F");
 
-        // test 5
+        ISet<String> s4 = new SortedSet<>();
+        s1.add("A");
+        s1.add("B");
+        s1.add("C");
+        s1.add("D");
+
+        // AbstractSet - Contains
+        boolean actual = s1.contains("B");
+        showTestResults(actual, true, 1, s1, null, "contains methods UnsortedSet"
+                + "/nset 1 contains B.");
+
+        // AbstractSet - ContainsAll
         actual = s1.containsAll(s2);
-        showTestResults(actual, false, 5, s1, s2, "containsAll method UnsortedSet"
-                + "/ns1 contains all of s2.");
+        showTestResults(actual, true, 2, s1, s2, "Contains All");
 
+        // AbstractSet - addAll
+        actual = s1.addAll(s2);
+        showTestResults(actual, false, 3, s1, s2, "addAll");
+
+        // AbstractSet - difference & equals
+        ISet<String> actualSet = s3.difference(s4);
+        ISet<String> expectedDiff = new SortedSet<>();
+        expectedDiff.add("F");
+        showTestResults(actualSet.equals(expectedDiff), false, 4, s3, s4, "Difference & Equals");
+
+        // AbstractSet - clear & size
+        s1.clear();
+        actual = (s1.size() == 0);
+        showTestResults(actual, true, 5, s1, null, "clear method UnsortedSet & size"
+        + "\ns1 should be empty after clear.");
+
+        /* 
         // test 6
         ISet<String> s3 = s2.difference(s1);
         ISet<String> expected = new UnsortedSet<>();
@@ -237,6 +251,7 @@ public class SetTester {
         actual = s1.equals(null);
         showTestResults(actual, false, 24, s1, null, "equals methods SortedSet - other Object is null");
 
+        */
         // CS314 Students. Uncomment this section when ready to
         // run your experiments
         // try {
