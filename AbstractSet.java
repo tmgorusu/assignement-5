@@ -103,7 +103,8 @@ public abstract class AbstractSet<E> implements ISet<E> {
     public void clear() {
         Iterator<E> increment = this.iterator();
         while(increment.hasNext()){
-            remove(increment.next());
+            increment.next();
+            increment.remove();
         }
     }
 
