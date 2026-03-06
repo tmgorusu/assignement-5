@@ -5,13 +5,13 @@
  * own work. I/we have neither given nor received unauthorized assistance on
  * this assignment.
  *
- * Name 1:
- * Email address 1:
- * UTEID 1:
+ * Name 1: Trisha Gorusu
+ * Email address 1: gorusu.trisha@gmail.com
+ * UTEID 1: tmg2936
  *
- * Name 2:
- * Email address 2:
- * UTEID 2:
+ * Name 2: Krish Vijayvergia
+ * Email address 2: kv9375@my.utexas.edu
+ * UTEID 2: kv9375
  */
 
 import java.util.Iterator;
@@ -31,6 +31,7 @@ public abstract class AbstractSet<E> implements ISet<E> {
      * @return true/false depending on if a specific
      * item is present
      */
+    //O(N)
     @Override
     public boolean contains(E item){
         for (E otherItem : this) {
@@ -50,6 +51,7 @@ public abstract class AbstractSet<E> implements ISet<E> {
      * @return true/false depending on if all
      * items are present
      */
+    //O(N^2)
     @Override
     public boolean containsAll(ISet<E> otherSet){
         for (E otherItem : otherSet) {
@@ -67,6 +69,7 @@ public abstract class AbstractSet<E> implements ISet<E> {
      * @param otherSet the set to compare if otherSet has more values
      * @return true/false depending on if a change was able to be made
      */
+    //O(N^2)
     @Override
     public boolean addAll(ISet<E> otherSet){
         boolean isSetDiff = false;
@@ -85,6 +88,7 @@ public abstract class AbstractSet<E> implements ISet<E> {
      * @param otherSet checks if this set has the corresponding value
      * @return true/false depending on if a change was able to be made
      */
+    //O(N^2)
     @Override
     public ISet<E> difference(ISet<E> otherSet){
         ISet<E> result = new UnsortedSet<>();
@@ -99,10 +103,11 @@ public abstract class AbstractSet<E> implements ISet<E> {
     /**
      * removes all of the values in an set
      */
+    //O(N)
     @Override
     public void clear() {
         Iterator<E> increment = this.iterator();
-        while(increment.hasNext()){
+        while (increment.hasNext()) {
             increment.next();
             increment.remove();
         }
@@ -111,11 +116,12 @@ public abstract class AbstractSet<E> implements ISet<E> {
     /**
      * calculates the size of a set
      */
+    //O(1)
     @Override
     public int size() {
         Iterator<E> increment = this.iterator();
         int counter = 0;
-        while(increment.hasNext()){
+        while (increment.hasNext()) {
             increment.next();
             counter++;
         }
@@ -129,6 +135,7 @@ public abstract class AbstractSet<E> implements ISet<E> {
      * @param object what you're comparing
      * @return true/false depending on if they r the same functionally
      */
+    // O(N^2)
     @Override
     public boolean equals(Object other) {
         if (other instanceof ISet<?>) {
