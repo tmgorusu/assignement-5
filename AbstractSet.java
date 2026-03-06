@@ -115,6 +115,7 @@ public abstract class AbstractSet<E> implements ISet<E> {
         Iterator<E> increment = this.iterator();
         int counter = 0;
         while(increment.hasNext()){
+            increment.next();
             counter++;
         }
         return counter;
